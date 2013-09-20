@@ -1,0 +1,78 @@
+<!--
+   untitled.html
+   
+   Copyright 2013 ashish <ashisha@batpc34>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Under Standing collection</title>
+<meta name="description" content="">
+</head>
+<body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+
+<script>
+var CricketTeam = Backbone.Model.extend({
+									defaults: {
+												captain: '',
+												testRank: true
+											  }
+								});
+								
+var CricketTeamCollection = Backbone.Collection.extend({
+													model: CricketTeam,
+												});
+
+
+																
+var India = new CricketTeam({ captain: 'M.S.Dhoni'}),
+	Australia = new CricketTeam({ captain: 'Michel Clark'}),
+	England = new CricketTeam({ captain: 'Alister Cook'}),
+	zimbawbe = new CricketTeam({ captain: 'brendon tailor',testRank:false});
+
+var ashes = new CricketTeamCollection([Australia,England]);
+
+console.log("Collection size: " + ashes.length);
+// Logs: Collection size: 2
+
+ashes.add(India);
+console.log("Collection size: " + ashes.length);
+// Logs: Collection size: 3
+
+ashes.remove([Australia,England]);
+console.log("Collection size: " + ashes.length);
+// Logs: Collection size: 1
+
+ashes.remove(India);
+console.log("Collection size: " + ashes.length);
+// Logs: Collection size: 0
+ashes.add(zimbawbe);
+console.log("Collection size: " + ashes.length);
+// Logs: Collection size: 1
+</script>
+
+</body>
+</html>
